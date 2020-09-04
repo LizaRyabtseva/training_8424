@@ -1,1 +1,0 @@
-console.log([[1,2], [8,4,5]].reduce((x, y) =>x.concat(y)));
