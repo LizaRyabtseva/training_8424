@@ -5,7 +5,8 @@ function deepEqual(obj1, obj2) {
     for (let k in obj1) {
         if (!(k in obj2) || !deepEqual(obj1[k], obj2[k]))  return false;
     }
+    if (Object.getOwnPropertyNames(obj1).length!=Object.getOwnPropertyNames(obj2).length) return false;
+
     return true;
 }
-
-console.log(deepEqual({value1: 1, value2:20 }, {value1: 1, value2: 20}));
+console.log(deepEqual({value1: 1, value2:20 }, {value1: 1, value2: 20, value3: 30}));
