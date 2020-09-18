@@ -13,11 +13,11 @@ class Vec {
     }
 
     get length() {
-        return Math.sqrt(this.x**2+this.y**2).toPrecision(3);
+        return Math.sqrt(this.x**2+this.y**2);
     }
 }
 
-let vector= new Vec(4,3);
+let vector= new Vec(1,3);
 console.log(vector.plus(new Vec(2,3)));
 console.log(vector.minus(new Vec(1,2)));
-console.log(vector.length);
+console.log(vector.length.toPrecision(3));
