@@ -11,5 +11,3 @@ const roads = [
 ];
 
 exports.roadGraph=buildGraph(roads.map(x => x.split("-")));
-
-console.log(module);
