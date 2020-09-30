@@ -2,6 +2,7 @@ function Promise_all(promises) {
     return new Promise((resolve, reject ) => {
         let count=0;
         let results=[];
+        if (promises.length==0) resolve(results);
         for (let pr of promises) {
             pr.then(res => {
                 results.push(res);
@@ -9,11 +10,12 @@ function Promise_all(promises) {
                 if (count==promises.length) resolve(results);
             }, reject);
         }
-        if (promises.length==count) resolve(results);
     });
 }
-
-Promise_all([Promise.reject("Y")]).then(array => console.log("This should be []:", array), err =>  console.log("Error: "+err));
+Promise_all([]).then(array => {
+    console.log("This should be []:", array);
+});
+Promise_all([Promise.reject("Y")]).then(array => console.log("This should be []:", array), error =>  console.log("Error: "+error));
 
 function soon(val) {
     return new Promise(resolve => {
