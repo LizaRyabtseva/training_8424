@@ -1,5 +1,5 @@
 const box= {
-    locked: true,
+    locked: false,
     unlock() {
         this.locked=false;
     },
@@ -14,13 +14,17 @@ const box= {
 };
 
 function withBoxUnlocked(body) {
+    let temp;
     if (box.locked) {
+        temp=box.locked;
         box.unlock();
     }
     try {
         body();
     } finally {
-        box.lock();
+        if (temp)
+            box.lock();
+        else box.unlock();
     }
 }
 withBoxUnlocked(() => {
@@ -28,6 +32,7 @@ withBoxUnlocked(() => {
 });
 
 try {
+    console.log(box.locked);
     withBoxUnlocked(function() {
         throw new Error("Pirates on the horizon! Abort!");
     });
